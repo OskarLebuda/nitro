@@ -30,10 +30,13 @@ export interface SwaggerUIConfig {
   showExtensions?: boolean;
   /** Controls the display of extensions (pattern, maxLength, minLength, maximum, minimum) fields and values for Parameters. */
   showCommonExtensions?: boolean;
-  /** Apply a sort to the tag list of each API. */
-  tagsSorter?: "alpha" | ((a: string, b: string) => number);
-  /** Provides a mechanism to be notified when Swagger UI has finished rendering a newly provided definition. */
-  onComplete?: () => void;
+  /** Apply a sort to the tag list of each API. Only "alpha" is supported (function values are not serializable). */
+  tagsSorter?: "alpha";
+  /**
+   * Provides a mechanism to be notified when Swagger UI has finished rendering.
+   * Note: function callbacks cannot be passed via Nitro configuration (not JSON-serializable).
+   */
+  onComplete?: never;
   /** Controls the layout of Swagger UI. */
   layout?: string;
   /** [String=""] - URL to fetch external configuration document from. */
